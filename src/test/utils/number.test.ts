@@ -10,7 +10,7 @@ import {
   multiply,
   subtract,
   sum,
-} from "./number";
+} from "@/utils/number";
 
 describe("⚙️ add", () => {
   it("adds two numbers", () => {
