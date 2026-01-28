@@ -42,7 +42,6 @@ const CryptoListContent = () => {
         <EmptyState
           title="No coins found"
           message={`No cryptocurrency matches "${searchQuery}"`}
-          icon="🔍"
           action={{
             label: "Clear Search",
             onClick: () => setSearchQuery(""),

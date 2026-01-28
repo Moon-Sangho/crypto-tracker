@@ -32,6 +32,8 @@ CryptoTracker는 [CoinGecko API](https://www.coingecko.com)를 활용하여 실�
 - **React Testing Library** - 컴포넌트 테스트
 - **MSW (Mock Service Worker)** - API 모킹
 - **React Compiler** - 자동 성능 최적화
+- **Lucide React** - 고품질 SVG 아이콘 라이브러리
+- **Agentation** - React 컴포넌트 검사 및 AI 피드백 도구
 
 ## 설치 및 실행
 
@@ -103,6 +105,51 @@ pnpm test:ui
 ```bash
 pnpm test:coverage
 ```
+
+## Agentation 도구
+
+### 개요
+
+[Agentation](https://agentation.dev)은 React 개발자를 위한 **인터랙티브 코드 피드백 도구**입니다. 개발 중에 UI 요소를 선택하고 피드백을 작성하면, 이를 AI 에이전트(예: Claude Code)가 이해할 수 있는 마크다운 형식으로 변환해줍니다.
+
+### 주요 기능
+
+- 🎯 **요소 선택** - 페이지의 특정 UI 요소를 클릭하여 선택
+- 💬 **피드백 작성** - 선택된 요소에 대한 개선사항 입력
+- 📋 **자동 위치 추적** - 클래스명, CSS 선택자, 요소 위치 자동 캡처
+- 📝 **마크다운 출력** - 포맷된 피드백을 AI 도구에 붙여넣을 수 있도록 변환
+
+### 사용 방법
+
+1. **개발 서버 실행**
+   ```bash
+   pnpm dev
+   ```
+
+2. **Agentation 활성화**
+   - 우측 하단의 Agentation 플로팅 버튼 클릭 (개발 모드에서만 표시)
+
+3. **요소 선택 및 피드백 작성**
+   - 개선하고 싶은 UI 요소를 마우스로 가리킨 후 클릭
+   - "아이콘들의 퀄리티가 좋지 않다" 등의 피드백 입력
+   - 마크다운으로 자동 포맷팅됨
+
+4. **AI 에이전트에 공유**
+   - 생성된 마크다운을 복사하여 Claude Code나 다른 AI 도구에 붙여넣기
+   - AI가 정확한 위치를 파악하고 빠르게 코드 수정 가능
+
+### 예시
+
+```
+### Page Feedback: /
+**Viewport:** 1920×934
+
+### 1. 8 elements: link "📊Browse All Coins", ...
+**Location:** multi-select
+**Feedback:** 아이콘들의 퀄리티가 너무 구려. 좀 더 세련된 아이콘들로 바꿔줘.
+```
+
+**참고**: Agentation은 현재 데스크톱 환경에서만 작동합니다.
 
 ## 프로젝트 구조
 

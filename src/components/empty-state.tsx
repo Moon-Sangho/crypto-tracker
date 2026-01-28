@@ -1,7 +1,10 @@
+import type { ReactNode } from "react";
+import { Search } from "lucide-react";
+
 interface EmptyStateProps {
   title?: string;
   message?: string;
-  icon?: string;
+  icon?: ReactNode;
   action?: {
     label: string;
     onClick: () => void;
@@ -11,12 +14,14 @@ interface EmptyStateProps {
 export const EmptyState = ({
   title = "No items found",
   message = "Try adjusting your search or filters",
-  icon = "🔍",
+  icon,
   action,
 }: EmptyStateProps) => {
+  const defaultIcon = icon ?? <Search size={48} className="text-gray-400" />;
+
   return (
     <div className="flex flex-col items-center justify-center gap-4 py-12">
-      <div className="text-5xl">{icon}</div>
+      <div className="flex justify-center">{defaultIcon}</div>
       <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
       <p className="text-center text-sm text-gray-600 max-w-sm">{message}</p>
       {action && (

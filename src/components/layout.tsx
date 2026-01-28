@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Outlet, Link } from "react-router";
+import { Coins } from "lucide-react";
 
 const Layout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -20,9 +21,10 @@ const Layout = () => {
           <div className="flex items-center justify-between">
             <Link
               to="/"
-              className="text-2xl font-bold text-blue-600 hover:text-blue-700"
+              className="flex items-center gap-2 text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors"
             >
-              💰 CryptoTracker
+              <Coins size={28} />
+              CryptoTracker
             </Link>
 
             {/* Desktop Navigation */}
@@ -83,9 +85,10 @@ const Layout = () => {
           <Link
             to="/"
             onClick={closeSidebar}
-            className="text-2xl font-bold text-blue-600 hover:text-blue-700"
+            className="flex items-center gap-2 text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors"
           >
-            💰 CryptoTracker
+            <Coins size={28} />
+            CryptoTracker
           </Link>
 
           {/* Sidebar Links */}

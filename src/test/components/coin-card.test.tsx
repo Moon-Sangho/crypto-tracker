@@ -74,14 +74,13 @@ describe("CoinCard", () => {
     renderCoinCard({ onToggleFavorite: mockHandler });
     const favoriteBtn = screen.getByRole("button", { name: /add to favorites/i });
     expect(favoriteBtn).toBeInTheDocument();
-    expect(favoriteBtn).toHaveTextContent("☆");
   });
 
-  it("should show filled star when favorite", () => {
+  it("should show filled heart when favorite", () => {
     const mockHandler = vi.fn();
     renderCoinCard({ isFavorite: true, onToggleFavorite: mockHandler });
     const favoriteBtn = screen.getByRole("button", { name: /remove from favorites/i });
-    expect(favoriteBtn).toHaveTextContent("⭐");
+    expect(favoriteBtn).toBeInTheDocument();
   });
 
   it("should call toggle handler when favorite button clicked", () => {

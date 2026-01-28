@@ -1,4 +1,5 @@
 import { useParams, Link } from "react-router";
+import { Heart, ChevronLeft } from "lucide-react";
 import { useCoinDetail } from "@/hooks/queries/use-coin-detail";
 import { useCoinChart } from "@/hooks/queries/use-coin-chart";
 import { useFavorites } from "@/hooks/use-favorites";
@@ -32,7 +33,8 @@ const CryptoDetailContent = () => {
           to="/crypto"
           className="text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1 mb-4"
         >
-          ← Back to List
+          <ChevronLeft size={20} />
+          Back to List
         </Link>
 
         <div className="flex items-start justify-between gap-4">
@@ -46,10 +48,13 @@ const CryptoDetailContent = () => {
 
           <button
             onClick={() => toggleFavorite(coin.id)}
-            className="text-3xl transition-colors hover:text-yellow-500"
+            className="transition-colors hover:text-red-500"
             aria-label={isFav ? "Remove from favorites" : "Add to favorites"}
           >
-            {isFav ? "⭐" : "☆"}
+            <Heart
+              size={32}
+              className={isFav ? "fill-red-500 text-red-500" : "text-gray-400"}
+            />
           </button>
         </div>
       </div>

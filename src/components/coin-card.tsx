@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import { Heart } from "lucide-react";
 import type { Coin } from "@/types/coin";
 import { formatPrice, formatPercentage } from "@/utils/format";
 
@@ -40,12 +41,15 @@ export const CoinCard = ({
               e.preventDefault();
               onToggleFavorite(coin.id);
             }}
-            className="shrink-0 text-lg transition-colors hover:text-yellow-500"
+            className="shrink-0 transition-colors hover:text-red-500"
             aria-label={
               isFavorite ? "Remove from favorites" : "Add to favorites"
             }
           >
-            {isFavorite ? "⭐" : "☆"}
+            <Heart
+              size={20}
+              className={isFavorite ? "fill-red-500 text-red-500" : "text-gray-400"}
+            />
           </button>
         )}
       </div>

@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { Link } from "react-router";
+import { Heart } from "lucide-react";
 import { useCoinsList } from "@/hooks/queries/use-coins-list";
 import { useFavorites } from "@/hooks/use-favorites";
 import { CoinList } from "@/components/coin-list";
@@ -40,7 +41,7 @@ const FavoritesContent = () => {
           <EmptyState
             title="No favorites yet"
             message="Add cryptocurrencies to your favorites to track them here"
-            icon="⭐"
+            icon={<Heart size={48} className="text-gray-400" />}
           />
           <div className="flex justify-center mt-4">
             <Link
