@@ -34,6 +34,28 @@ TanStack Query is configured at the application entry point. Use the `QueryClien
   - Consumers destructure data: `const { data: coins } = useCoinsList()`
   - Suspense handles loading, Error Boundary handles errors
   - Colocated tests with `.test.ts` extension
+  - **Collocation Pattern**: API functions are colocated within the hook file
+    - Place helper functions (e.g., `getMarketList`, `searchCoins`) directly in the hook file
+    - Follow this pattern: helpers first, then hook last
+    - Benefits: Related code together, easier navigation, single responsibility per file
+    - Example:
+
+      ```typescript
+      // API function
+      export const getMarketList = async (page = 1) =>
+        (await apiClient.get<Coin[]>("/coins/markets", { params: { ... } })).data;
+
+
+      // Hook using the API function
+      export const useCoinsList = (page = 1) =>
+        useSuspenseQuery({
+          queryKey: queryKeys.coins.list(page),
+          queryFn: () => getMarketList(page),
+          staleTime: 1000 * 60,
+          gcTime: 1000 * 60 * 5,
+        });
+      ```
+
 - **Mutation hooks**: Would be located in `src/hooks/mutations/` if needed for mutations
 - **Normal hooks**: Located in `src/hooks/` for non-query logic
   - Example: `useFavorites()` manages localStorage state and syncs across tabs

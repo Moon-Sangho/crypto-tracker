@@ -150,11 +150,4 @@ export const handlers = [
 
     return HttpResponse.json(chartData);
   }),
-
-  http.get(`${API_BASE_URL}/simple/price`, () => {
-    return HttpResponse.json({
-      bitcoin: { usd: 42000 },
-      ethereum: { usd: 2300 },
-    });
-  }),
 ];
