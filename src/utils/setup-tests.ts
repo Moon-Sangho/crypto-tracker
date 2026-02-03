@@ -1,5 +1,5 @@
+import { server } from "@/__mocks__/server";
 import "@testing-library/jest-dom/vitest";
-import { server } from "./mocks/server";
 import { afterAll, afterEach, beforeAll } from "vitest";
 
 // Start server before all tests

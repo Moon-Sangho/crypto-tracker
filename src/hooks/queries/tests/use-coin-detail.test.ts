@@ -5,8 +5,8 @@ import {
 } from "@/hooks/queries/use-coin-detail";
 import type { CoinGeckoDetail } from "@/types/coin";
 import { COINGECKO_API_BASE_URL } from "@/api/coingekco-api";
-import { server } from "@/test/mocks/server";
 import { http, HttpResponse } from "msw";
+import { server } from "@/__mocks__/server";
 
 describe("transformCoinDetailResponse", () => {
   const createMockCoinGeckoDetail = (

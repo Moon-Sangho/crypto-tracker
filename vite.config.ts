@@ -16,10 +16,10 @@ export default defineConfig({
   ],
   test: {
     environment: "jsdom",
-    setupFiles: "./src/test/setup.ts",
+    setupFiles: "./src/utils/setup-tests.ts",
     // https://vitest.dev/config/#test-globals
     globals: true,
     css: true,
-    include: ["src/test/**/*.test.{ts,tsx}"],
+    include: ["./src/**/*.test.{ts,tsx}"],
   },
 });

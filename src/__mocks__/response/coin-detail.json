@@ -1,0 +1,50 @@
+{
+  "id": "bitcoin",
+  "symbol": "btc",
+  "name": "Bitcoin",
+  "image": "https://assets.coingecko.com/coins/images/1/large/bitcoin.png",
+  "current_price": 42000,
+  "market_cap": 823000000000,
+  "market_cap_rank": 1,
+  "fully_diluted_valuation": 883000000000,
+  "total_volume": 28000000000,
+  "high_24h": 43000,
+  "low_24h": 41000,
+  "price_change_24h": 1200,
+  "price_change_percentage_24h": 2.94,
+  "market_cap_change_24h": 24500000000,
+  "market_cap_change_percentage_24h": 3.07,
+  "circulating_supply": 21000000,
+  "total_supply": 21000000,
+  "max_supply": 21000000,
+  "ath": 69000,
+  "atl": 67,
+  "ath_change_percentage": -39.13,
+  "atl_change_percentage": 62687.57,
+  "ath_date": "2021-11-10T14:24:11.849Z",
+  "atl_date": "2013-07-06T00:00:00.000Z",
+  "roi": null,
+  "last_updated": "2024-01-15T10:00:00Z",
+  "description": {
+    "en": "Bitcoin is a leading cryptocurrency. Description placeholder."
+  },
+  "links": {
+    "homepage": ["https://example.com"],
+    "blockchain_site": [],
+    "official_forum_url": [],
+    "chat_url": [],
+    "announcement_url": [],
+    "twitter_screen_name": "",
+    "facebook_username": "",
+    "bitcointalk_thread_id": null,
+    "telegram_channel_identifier": "",
+    "subreddit_url": "",
+    "repos_url": {
+      "github": [],
+      "bitbucket": []
+    }
+  },
+  "categories": ["Layer 1"],
+  "sentiment_votes_up_percentage": 75,
+  "sentiment_votes_down_percentage": 25
+}

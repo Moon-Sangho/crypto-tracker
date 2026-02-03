@@ -1,8 +1,8 @@
 import { describe, it, expect } from "vitest";
 import { getMarketList } from "@/hooks/queries/use-coins-list";
 import { COINGECKO_API_BASE_URL } from "@/api/coingekco-api";
-import { server } from "@/test/mocks/server";
 import { http, HttpResponse } from "msw";
+import { server } from "@/__mocks__/server";
 
 describe("useCoinsList - API Layer", () => {
   it("should fetch top 50 coins with correct structure", async () => {
