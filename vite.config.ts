@@ -14,6 +14,9 @@ export default defineConfig({
     tailwindcss(),
     tsconfigPaths(),
   ],
+  server: {
+    host: true,
+  },
   test: {
     environment: "jsdom",
     setupFiles: "./src/utils/setup-tests.ts",

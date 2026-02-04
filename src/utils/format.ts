@@ -67,6 +67,26 @@ export const formatDate = (dateString: string | null | undefined): string => {
 };
 
 /**
+ * Format a date string to readable format with timezone
+ */
+export const formatDateWithTimeZone = (dateString: string | null | undefined): string => {
+  if (!dateString) return "N/A";
+  try {
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      timeZoneName: "short",
+    }).format(date);
+  } catch {
+    return "N/A";
+  }
+};
+
+/**
  * Format a number with commas
  */
 export const formatNumber = (num: number | null | undefined): string => {

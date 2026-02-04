@@ -17,8 +17,13 @@ import {
 const CryptoDetailContent = () => {
   const { coinId } = useParams<{ coinId: string }>();
 
-  const { data: coin } = useCoinDetail(coinId || "");
-  const { data: chartData } = useCoinChart(coinId || "");
+  // Validate coinId before making queries
+  if (!coinId) {
+    return <ErrorMessage message="Coin ID is required" />;
+  }
+
+  const { data: coin } = useCoinDetail(coinId);
+  const { data: chartData } = useCoinChart(coinId);
   const { isFavorite, toggleFavorite } = useFavorites();
 
   const isFav = isFavorite(coin.id);
@@ -58,6 +63,13 @@ const CryptoDetailContent = () => {
           </button>
         </div>
       </div>
+
+      {/* Price Chart */}
+      {chartData && (
+        <div className="rounded-lg bg-white border border-gray-200 p-6">
+          <PriceChart data={chartData} />
+        </div>
+      )}
 
       {/* Price Info */}
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2">
@@ -157,13 +169,6 @@ const CryptoDetailContent = () => {
         <div className="rounded-lg bg-white border border-gray-200 p-6">
           <h2 className="text-xl font-semibold text-gray-900 mb-3">About</h2>
           <p className="text-gray-700 leading-relaxed">{coin.description.en}</p>
-        </div>
-      )}
-
-      {/* Price Chart */}
-      {chartData && (
-        <div className="rounded-lg bg-white border border-gray-200 p-6">
-          <PriceChart data={chartData} />
         </div>
       )}
     </div>
