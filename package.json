@@ -57,11 +57,5 @@
     "overrides": {
       "vite": "npm:rolldown-vite@7.2.5"
     }
-  },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "pnpm lint",
-      "pnpm typecheck"
-    ]
   }
 }

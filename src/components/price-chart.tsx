@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useLayoutEffect } from "react";
 import type { ChartData } from "@/types/coin";
 import { formatPrice, formatDateWithTimeZone } from "@/utils/format";
 
@@ -46,6 +46,29 @@ export const PriceChart = ({
     price: 0,
     timestamp: 0,
   });
+  const [tooltipPosition, setTooltipPosition] = useState({
+    leftPercent: 0,
+    translateClass: "translate-x-[-50%]",
+  });
+
+  // Tooltip 위치 계산 (ref 접근은 effect에서)
+  useLayoutEffect(() => {
+    if (tooltip.visible && svgRef.current) {
+      const svg = svgRef.current;
+      const rect = svg.getBoundingClientRect();
+      const relativeX = tooltip.clientX - rect.left;
+      const leftPercent = (relativeX / rect.width) * 100;
+
+      let translateClass = "translate-x-[-50%]";
+      if (leftPercent < CHART_CONSTANTS.TOOLTIP_LEFT_EDGE_THRESHOLD) {
+        translateClass = "translate-x-[0]";
+      } else if (leftPercent > CHART_CONSTANTS.TOOLTIP_RIGHT_EDGE_THRESHOLD) {
+        translateClass = "translate-x-[-100%]";
+      }
+
+      setTooltipPosition({ leftPercent, translateClass });
+    }
+  }, [tooltip.visible, tooltip.clientX]);
 
   if (!data.prices || data.prices.length === 0) {
     return (
@@ -124,26 +147,6 @@ export const PriceChart = ({
     selectedIndex >= 0
       ? CHART_CONSTANTS.SVG_HEIGHT - normalizedPrices[selectedIndex] * 2
       : 0;
-
-  // Tooltip 위치 계산 (clientX 기반)
-  let tooltipLeftPercent = 0;
-  let translateClass = "translate-x-[-50%]"; // 기본: 중앙 정렬
-  if (tooltip.visible) {
-    const svg = svgRef.current;
-    if (svg) {
-      const rect = svg.getBoundingClientRect();
-      const relativeX = tooltip.clientX - rect.left;
-      tooltipLeftPercent = (relativeX / rect.width) * 100;
-
-      if (tooltipLeftPercent < CHART_CONSTANTS.TOOLTIP_LEFT_EDGE_THRESHOLD) {
-        translateClass = "translate-x-[0]"; // 왼쪽 정렬
-      } else if (
-        tooltipLeftPercent > CHART_CONSTANTS.TOOLTIP_RIGHT_EDGE_THRESHOLD
-      ) {
-        translateClass = "translate-x-[-100%]"; // 오른쪽 정렬
-      }
-    }
-  }
 
   // Y축 가격 레이블 생성
   const generateYAxisLabels = (
@@ -306,8 +309,8 @@ export const PriceChart = ({
         {/* Tooltip DOM */}
         {tooltip.visible && (
           <div
-            className={`absolute bg-gray-900 text-white px-3 py-2 rounded-lg shadow-lg pointer-events-none whitespace-nowrap ${translateClass}`}
-            style={{ left: `${tooltipLeftPercent}%`, top: "-48px" }}
+            className={`absolute bg-gray-900 text-white px-3 py-2 rounded-lg shadow-lg pointer-events-none whitespace-nowrap ${tooltipPosition.translateClass}`}
+            style={{ left: `${tooltipPosition.leftPercent}%`, top: "-48px" }}
           >
             <div className="text-xs text-gray-400">
               {formatDateWithTimeZone(

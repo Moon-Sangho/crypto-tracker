@@ -17,14 +17,14 @@ import {
 const CryptoDetailContent = () => {
   const { coinId } = useParams<{ coinId: string }>();
 
-  // Validate coinId before making queries
+  const { data: coin } = useCoinDetail(coinId!);
+  const { data: chartData } = useCoinChart(coinId!);
+  const { isFavorite, toggleFavorite } = useFavorites();
+
+  // Validate coinId after hooks
   if (!coinId) {
     return <ErrorMessage message="Coin ID is required" />;
   }
-
-  const { data: coin } = useCoinDetail(coinId);
-  const { data: chartData } = useCoinChart(coinId);
-  const { isFavorite, toggleFavorite } = useFavorites();
 
   const isFav = isFavorite(coin.id);
   const priceChange = coin.price_change_percentage_24h ?? 0;
